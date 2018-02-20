@@ -5,18 +5,13 @@
 #include "db_fun.h"
 #include "parameters.h"
 #include "check_entry_exit.h"
-#include "exchanges/bitfinex.h"
-#include "exchanges/okcoin.h"
-#include "exchanges/bitstamp.h"
+
 #include "exchanges/gemini.h"
 #include "exchanges/kraken.h"
-#include "exchanges/quadrigacx.h"
-#include "exchanges/itbit.h"
-#include "exchanges/btce.h"
+
 #include "exchanges/poloniex.h"
 #include "exchanges/gdax.h"
-#include "exchanges/exmo.h"
-#include "exchanges/cexio.h"
+
 #include "exchanges/bittrex.h"
 #include "exchanges/binance.h"
 
@@ -66,7 +61,7 @@ int main(int argc, char** argv) {
   // Replaces the C++ global locale with the user-preferred locale
   std::locale mylocale("");
   // Loads all the parameters
-  Parameters params("blackbird.conf");
+  Parameters params("test.conf");
   // Does some verifications about the parameters
   if (!params.demoMode) {
     if (!params.useFullExposure) {
@@ -109,66 +104,20 @@ int main(int argc, char** argv) {
   // Function arrays containing all the exchanges functions
   // using the 'typedef' declarations from above.
 
-  getQuoteType getQuote[15];
-  getAvailType getAvail[15];
-  sendOrderType sendLongOrder[15];
-  sendOrderType sendShortOrder[15];
-  isOrderCompleteType isOrderComplete[15];
-  getActivePosType getActivePos[15];
-  getLimitPriceType getLimitPrice[15];
-  std::string dbTableName[15];
+  getQuoteType getQuote[8];
+  getAvailType getAvail[8];
+  sendOrderType sendLongOrder[8];
+  sendOrderType sendShortOrder[8];
+  isOrderCompleteType isOrderComplete[8];
+  getActivePosType getActivePos[8];
+  getLimitPriceType getLimitPrice[8];
+  std::string dbTableName[8];
 
 
 
   // Adds the exchange functions to the arrays for all the defined exchanges
   int index = 0;
-  if (params.bitfinexEnable &&
-     (params.bitfinexApi.empty() == false || params.demoMode == true)) {
-    params.addExchange("Bitfinex", params.bitfinexFees, true, true);
-    getQuote[index] = Bitfinex::getQuote;
-    getAvail[index] = Bitfinex::getAvail;
-    sendLongOrder[index] = Bitfinex::sendLongOrder;
-    sendShortOrder[index] = Bitfinex::sendShortOrder;
-    isOrderComplete[index] = Bitfinex::isOrderComplete;
-    getActivePos[index] = Bitfinex::getActivePos;
-    getLimitPrice[index] = Bitfinex::getLimitPrice;
 
-    dbTableName[index] = "bitfinex";
-    createTable(dbTableName[index], params);
-
-    index++;
-  }
-  if (params.okcoinEnable &&
-     (params.okcoinApi.empty() == false || params.demoMode == true)) {
-    params.addExchange("OKCoin", params.okcoinFees, false, true);
-    getQuote[index] = OKCoin::getQuote;
-    getAvail[index] = OKCoin::getAvail;
-    sendLongOrder[index] = OKCoin::sendLongOrder;
-    sendShortOrder[index] = OKCoin::sendShortOrder;
-    isOrderComplete[index] = OKCoin::isOrderComplete;
-    getActivePos[index] = OKCoin::getActivePos;
-    getLimitPrice[index] = OKCoin::getLimitPrice;
-
-    dbTableName[index] = "okcoin";
-    createTable(dbTableName[index], params);
-
-    index++;
-  }
-  if (params.bitstampEnable &&
-     (params.bitstampClientId.empty() == false || params.demoMode == true)) {
-    params.addExchange("Bitstamp", params.bitstampFees, false, true);
-    getQuote[index] = Bitstamp::getQuote;
-    getAvail[index] = Bitstamp::getAvail;
-    sendLongOrder[index] = Bitstamp::sendLongOrder;
-    isOrderComplete[index] = Bitstamp::isOrderComplete;
-    getActivePos[index] = Bitstamp::getActivePos;
-    getLimitPrice[index] = Bitstamp::getLimitPrice;
-
-    dbTableName[index] = "bitstamp";
-    createTable(dbTableName[index], params);
-
-    index++;
-  }
   if (params.geminiEnable &&
      (params.geminiApi.empty() == false || params.demoMode == true)) {
     params.addExchange("Gemini", params.geminiFees, false, true);
@@ -184,6 +133,7 @@ int main(int argc, char** argv) {
 
     index++;
   }
+
   if (params.krakenEnable &&
      (params.krakenApi.empty() == false || params.demoMode == true)) {
     params.addExchange("Kraken", params.krakenFees, true, true);
@@ -200,34 +150,7 @@ int main(int argc, char** argv) {
 
     index++;
   }
-  if (params.itbitEnable &&
-     (params.itbitApi.empty() == false || params.demoMode == true)) {
-    params.addExchange("ItBit", params.itbitFees, false, false);
-    getQuote[index] = ItBit::getQuote;
-    getAvail[index] = ItBit::getAvail;
-    getActivePos[index] = ItBit::getActivePos;
-    getLimitPrice[index] = ItBit::getLimitPrice;
 
-    dbTableName[index] = "itbit";
-    createTable(dbTableName[index], params);
-
-    index++;
-  }
-  if (params.btceEnable &&
-     (params.btceApi.empty() == false || params.demoMode == true)) {
-    params.addExchange("BTC-e", params.btceFees, false, true);
-    getQuote[index] = BTCe::getQuote;
-    getAvail[index] = BTCe::getAvail;
-    sendLongOrder[index] = BTCe::sendLongOrder;
-    isOrderComplete[index] = BTCe::isOrderComplete;
-    getActivePos[index] = BTCe::getActivePos;
-    getLimitPrice[index] = BTCe::getLimitPrice;
-
-    dbTableName[index] = "btce";
-    createTable(dbTableName[index], params);
-
-    index++;
-  }
   if (params.poloniexEnable &&
      (params.poloniexApi.empty() == false || params.demoMode == true)) {
     params.addExchange("Poloniex", params.poloniexFees, false, true);
@@ -258,52 +181,7 @@ int main(int argc, char** argv) {
 
     index++;
   }
-  if (params.quadrigaEnable &&
-         (params.quadrigaApi.empty() == false || params.demoMode == true)) {
-    params.addExchange("QuadrigaCX", params.quadrigaFees, false, true);
-    getQuote[index] = QuadrigaCX::getQuote;
-    getAvail[index] = QuadrigaCX::getAvail;
-    sendLongOrder[index] = QuadrigaCX::sendLongOrder;
-    isOrderComplete[index] = QuadrigaCX::isOrderComplete;
-    getActivePos[index] = QuadrigaCX::getActivePos;
-    getLimitPrice[index] = QuadrigaCX::getLimitPrice;
 
-    dbTableName[index] = "quadriga";
-    createTable(dbTableName[index], params);
-
-    index++;
-  }
-  if (params.exmoEnable &&
-         (params.exmoApi.empty() == false || params.demoMode == true)) {
-    params.addExchange("Exmo", params.exmoFees, false, true);
-    getQuote[index] = Exmo::getQuote;
-    getAvail[index] = Exmo::getAvail;
-    sendLongOrder[index] = Exmo::sendLongOrder;
-    isOrderComplete[index] = Exmo::isOrderComplete;
-    getActivePos[index] = Exmo::getActivePos;
-    getLimitPrice[index] = Exmo::getLimitPrice;
-
-    dbTableName[index] = "exmo";
-    createTable(dbTableName[index], params);
-
-    index++;
-  }
-  if (params.cexioEnable &&
-         (params.cexioApi.empty() == false || params.demoMode == true)) {
-    params.addExchange("Cexio", params.cexioFees, false, true);
-    getQuote[index] = Cexio::getQuote;
-    getAvail[index] = Cexio::getAvail;
-    sendLongOrder[index] = Cexio::sendLongOrder;
-    sendShortOrder[index] = Cexio::sendShortOrder;
-    isOrderComplete[index] = Cexio::isOrderComplete;
-    getActivePos[index] = Cexio::getActivePos;
-    getLimitPrice[index] = Cexio::getLimitPrice;
-
-    dbTableName[index] = "cexio";
-    createTable(dbTableName[index], params);
-
-    index++;
-  }
   if (params.bittrexEnable &&
       (params.bittrexApi.empty() == false || params.demoMode == true))
   {

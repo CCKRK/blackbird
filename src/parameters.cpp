@@ -91,19 +91,6 @@ Parameters::Parameters(std::string fileName) {
   volatilityPeriod = getUnsigned(getParameter("VolatilityPeriod", configFile));
   cacert = getParameter("CACert", configFile);
 
-  bitfinexApi = getParameter("BitfinexApiKey", configFile);
-  bitfinexSecret = getParameter("BitfinexSecretKey", configFile);
-  bitfinexFees = getDouble(getParameter("BitfinexFees", configFile));
-  bitfinexEnable = getBool(getParameter("BitfinexEnable", configFile));
-  okcoinApi = getParameter("OkCoinApiKey", configFile);
-  okcoinSecret = getParameter("OkCoinSecretKey", configFile);
-  okcoinFees = getDouble(getParameter("OkCoinFees", configFile));
-  okcoinEnable = getBool(getParameter("OkCoinEnable", configFile));
-  bitstampClientId = getParameter("BitstampClientId", configFile);
-  bitstampApi = getParameter("BitstampApiKey", configFile);
-  bitstampSecret = getParameter("BitstampSecretKey", configFile);
-  bitstampFees = getDouble(getParameter("BitstampFees", configFile));
-  bitstampEnable = getBool(getParameter("BitstampEnable", configFile));
   geminiApi = getParameter("GeminiApiKey", configFile);
   geminiSecret = getParameter("GeminiSecretKey", configFile);
   geminiFees = getDouble(getParameter("GeminiFees", configFile));
@@ -112,14 +99,7 @@ Parameters::Parameters(std::string fileName) {
   krakenSecret = getParameter("KrakenSecretKey", configFile);
   krakenFees = getDouble(getParameter("KrakenFees", configFile));
   krakenEnable = getBool(getParameter("KrakenEnable", configFile));
-  itbitApi = getParameter("ItBitApiKey", configFile);
-  itbitSecret = getParameter("ItBitSecretKey", configFile);
-  itbitFees = getDouble(getParameter("ItBitFees", configFile));
-  itbitEnable = getBool(getParameter("ItBitEnable", configFile));
-  btceApi = getParameter("BTCeApiKey", configFile);
-  btceSecret = getParameter("BTCeSecretKey", configFile);
-  btceFees = getDouble(getParameter("BTCeFees", configFile));
-  btceEnable = getBool(getParameter("BTCeEnable", configFile));
+
   poloniexApi = getParameter("PoloniexApiKey", configFile);
   poloniexSecret = getParameter("PoloniexSecretKey", configFile);
   poloniexFees = getDouble(getParameter("PoloniexFees", configFile));
@@ -129,20 +109,7 @@ Parameters::Parameters(std::string fileName) {
   gdaxPhrase = getParameter("GDAXPhrase", configFile);
   gdaxFees = getDouble(getParameter("GDAXFees", configFile));
   gdaxEnable = getBool(getParameter("GDAXEnable", configFile));
-  quadrigaApi = getParameter("QuadrigaApiKey", configFile);
-  quadrigaSecret = getParameter("QuadrigaSecretKey", configFile);
-  quadrigaFees = getDouble(getParameter("QuadrigaFees", configFile));
-  quadrigaClientId = getParameter("QuadrigaClientId", configFile);
-  quadrigaEnable = getBool(getParameter("QuadrigaEnable", configFile));
-  exmoApi = getParameter("ExmoApiKey", configFile);
-  exmoSecret = getParameter("ExmoSecretKey", configFile);
-  exmoFees = getDouble(getParameter("ExmoFees", configFile));
-  exmoEnable = getBool(getParameter("ExmoEnable", configFile));
-  cexioClientId = getParameter("CexioClientId", configFile);
-  cexioApi = getParameter("CexioApiKey", configFile);
-  cexioSecret = getParameter("CexioSecretKey", configFile);
-  cexioFees = getDouble(getParameter("CexioFees", configFile));
-  cexioEnable = getBool(getParameter("CexioEnable", configFile));
+
   bittrexApi = getParameter("BittrexApiKey", configFile);
   bittrexSecret = getParameter("BittrexSecretKey", configFile);
   bittrexFees = getDouble(getParameter("BittrexFees", configFile));

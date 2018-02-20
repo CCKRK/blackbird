@@ -39,7 +39,10 @@
             "includePath": [
                 "/usr/include",
                 "/usr/local/include",
-                "${workspaceRoot}"
+                "${workspaceRoot}",
+                "${workspaceRoot}/src",
+                "/usr/include/boost/tr1/tr1",
+                "/usr/include/boost/compatibility/cpp_c_headers"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",

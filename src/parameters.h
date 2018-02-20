@@ -40,19 +40,7 @@ struct Parameters {
   unsigned volatilityPeriod;
   std::string cacert;
 
-  std::string bitfinexApi;
-  std::string bitfinexSecret;
-  double bitfinexFees;
-  bool bitfinexEnable;
-  std::string okcoinApi;
-  std::string okcoinSecret;
-  double okcoinFees;
-  bool okcoinEnable;
-  std::string bitstampClientId;
-  std::string bitstampApi;
-  std::string bitstampSecret;
-  double bitstampFees;
-  bool bitstampEnable;
+
   std::string geminiApi;
   std::string geminiSecret;
   double geminiFees;
@@ -62,14 +50,7 @@ struct Parameters {
   std::string krakenSecret;
   double krakenFees;
   bool krakenEnable;
-  std::string itbitApi;
-  std::string itbitSecret;
-  double itbitFees;
-  bool itbitEnable;
-  std::string btceApi;
-  std::string btceSecret;
-  double btceFees;
-  bool btceEnable;
+
   std::string poloniexApi;
   std::string poloniexSecret;
   double poloniexFees;
@@ -79,20 +60,7 @@ struct Parameters {
   std::string gdaxPhrase;
   double gdaxFees;
   bool gdaxEnable;
-  std::string quadrigaApi;
-  std::string quadrigaSecret;
-  std::string quadrigaClientId;
-  double quadrigaFees;
-  bool quadrigaEnable;
-  std::string exmoApi;
-  std::string exmoSecret;
-  double exmoFees;
-  bool exmoEnable;
-  std::string cexioClientId;
-  std::string cexioApi;
-  std::string cexioSecret;
-  double cexioFees;
-  bool cexioEnable;
+
   std::string bittrexApi;
   std::string bittrexSecret;
   double bittrexFees;
